@@ -8,6 +8,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $this->render('index');
+        return $this->render('index');
+    }
+
+    public function show($save)
+    {
+        return $this->render('index', ['save' => $save]);
     }
 }

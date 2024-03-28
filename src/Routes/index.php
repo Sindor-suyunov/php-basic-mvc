@@ -1,10 +1,10 @@
 <?php
 
 use App\Controllers\HomeController;
-use App\Router;
+use Core\Routing\Route;
 
-$router = new Router();
+Route::get('/new/{save}', HomeController::class, 'show');
+Route::get('/main/new', HomeController::class, 'show');
+Route::get('/', HomeController::class, 'index');
 
-$router->get('/', HomeController::class, 'index');
 
-$router->dispatch();

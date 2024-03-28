@@ -1,5 +1,9 @@
 <?php
 
-require '../vendor/autoload.php';
+use Core\Routing\BaseRouter;
+use Core\Routing\Routes;
 
-$router = require '../src/Routes/index.php';
+require '../vendor/autoload.php';
+require '../src/Routes/index.php';
+
+BaseRouter::make()->setRoutes(Routes::$routes);

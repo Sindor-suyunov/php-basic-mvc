@@ -1,9 +1,16 @@
 {
     "name": "sindorsuyunov/php-basic-mvc",
+    "type": "project",
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "Core\\": "@core/"
         }
+    },
+    "autoload-dev": {
+        "files": [
+            "@core/Support/Helpers.php"
+        ]
     },
     "authors": [
         {
@@ -11,5 +18,7 @@
             "email": "sindorsuyunov92@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^8.2"
+    }
 }
