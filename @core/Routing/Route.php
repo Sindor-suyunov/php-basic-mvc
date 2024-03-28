@@ -2,6 +2,10 @@
 
 namespace Core\Routing;
 
+/**
+ * @method static get(string $string, string $class, string $string1)
+ * @method static post(string $string, string $class, string $string1)
+ */
 class Route
 {
     private static function make(): static
@@ -9,17 +13,16 @@ class Route
         return new static;
     }
 
-    public static function get($route, $controller, $action): Route
+    public static function __callStatic(string $name, array $arguments)
     {
-        return static::make()->addRoute($route, $controller, $action, "GET");
+        if (in_array($name, ['post', 'put', 'delete','get','patch'])) {
+            return static::make()->addRoute(strtoupper($name), ...$arguments);
+        }
+
+        throw new \InvalidArgumentException("Invalid method");
     }
 
-    public static function post($route, $controller, $action): Route
-    {
-        return static::make()->addRoute($route, $controller, $action, "POST");
-    }
-
-    private function addRoute(string $route, string $controller, string $action, string $method): Route
+    private function addRoute(string $method, string $route, string $controller, string $action): Route
     {
         Routes::$routes[$method][$route] = [
             'controller' => $controller,
